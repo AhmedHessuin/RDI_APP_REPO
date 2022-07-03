@@ -13,10 +13,10 @@ from fastapi import FastAPI, File, UploadFile,Request, Form
 # data_base_path = "./uploaded_data"
 # os.makedirs(data_base_path, exist_ok=True)
 app = FastAPI(title="Covid Health Detection")
-'''
+
 def get_file_save_it_and_inf(uploaded_file):
     base_file = "/files/files"
-    os.makedirs(base_file, exist_ok=True)
+    #os.makedirs(base_file, exist_ok=True)
     file_location = f"{base_file}/{uploaded_file.filename}"
 
     file_as_byte = uploaded_file.file.read()
@@ -69,11 +69,11 @@ async def alive_ui():
 async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
     base_file = "/files/files"
-    os.makedirs(base_file, exist_ok=True)
+    #os.makedirs(base_file, exist_ok=True)
     result=get_file_save_it_and_inf(uploaded_file)
     
     return {"Prediction Resut": result}
-'''
+
 @app.get("/", response_class=HTMLResponse)
 async def main():
     
@@ -91,7 +91,8 @@ async def main():
     """
 
 
-'''
+
+
 @app.post("/upload-file_ui")
 async def create_upload_files_ui(
     files: UploadFile = File(description="Multiple files as UploadFile"),
