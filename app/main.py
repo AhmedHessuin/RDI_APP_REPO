@@ -15,8 +15,6 @@ from fastapi import FastAPI, File, UploadFile,Request, Form
 app = FastAPI(title="Covid Health Detection")
 
 
-'''
-
 def get_file_save_it_and_inf(uploaded_file):
     base_file = "/files/files"
     #os.makedirs(base_file, exist_ok=True)
@@ -67,6 +65,8 @@ async def alive_ui():
 </body>
     """
     return HTMLResponse(content=content)
+
+'''#
 
 @app.post("/upload-file_api/")
 async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
