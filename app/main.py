@@ -8,6 +8,8 @@ from typing import List
 os.environ['CUDA_VISIBLE_DEVICES'] = ""
 import tensorflow as tf
 
+
+
 from fastapi import FastAPI, File, UploadFile,Request, Form
 
 # data_base_path = "./uploaded_data"
@@ -41,8 +43,8 @@ def get_file_save_it_and_inf(uploaded_file):
 @app.on_event("startup")
 def load_clf():
     model_path = "/app/model"
-    global saved_modl
-    saved_modl = tf.keras.models.load_model(model_path)
+    #global saved_modl
+    #saved_modl = tf.keras.models.load_model(model_path)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
