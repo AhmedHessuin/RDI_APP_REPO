@@ -14,6 +14,9 @@ from fastapi import FastAPI, File, UploadFile,Request, Form
 # os.makedirs(data_base_path, exist_ok=True)
 app = FastAPI(title="Covid Health Detection")
 
+
+'''
+
 def get_file_save_it_and_inf(uploaded_file):
     base_file = "/files/files"
     #os.makedirs(base_file, exist_ok=True)
@@ -74,6 +77,22 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
     return {"Prediction Resut": result}
 
+
+
+
+
+
+
+
+'''
+
+
+
+
+
+
+
+
 @app.get("/", response_class=HTMLResponse)
 async def main():
     
@@ -89,7 +108,7 @@ async def main():
         </body>
     </html>
     """
-
+'''#
 
 
 
@@ -133,4 +152,4 @@ async def upload_file_ui():
 </form>
 </body>
     """
-    return HTMLResponse(content=content)'''
+    return HTMLResponse(content=content) #'''
