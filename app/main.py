@@ -43,8 +43,8 @@ def get_file_save_it_and_inf(uploaded_file):
 @app.on_event("startup")
 def load_clf():
     model_path = "/app/model"
-    #global saved_modl
-    #saved_modl = tf.keras.models.load_model(model_path)
+    global saved_modl
+    saved_modl = tf.keras.models.load_model(model_path,compile ="False")
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
