@@ -63,7 +63,7 @@ async def alive_ui():
 
 
 
-@app.post("/")
+@app.post("/upload-file_api")
 def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
 #    base_file = "/files/files"
