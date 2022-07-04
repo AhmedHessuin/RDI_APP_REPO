@@ -53,7 +53,7 @@ async def alive_ui():
 
 
 
-'''
+
 @app.post("/upload-file_api/")
 async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
@@ -65,7 +65,7 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
 
 
 
-'''
+
 
 '''
 @app.get("/", response_class=HTMLResponse)
@@ -86,7 +86,7 @@ async def main():
 '''
 
 
-'''
+
 @app.post("/") #/upload-file_ui
 async def create_upload_files_ui(
     files: UploadFile = File(description="Multiple files as UploadFile"),
@@ -111,7 +111,7 @@ async def create_upload_files_ui(
     """
 
     return HTMLResponse(content=content)
-'''
+
 
 @app.get("/") #upload-file_ui
 async def upload_file_ui():
