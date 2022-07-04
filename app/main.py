@@ -11,7 +11,7 @@ def get_file_save_it_and_inf(uploaded_file):
 
     with uploaded_file.file.read() as file_as_byte:
         decoded_img = cv2.imdecode(np.frombuffer(file_as_byte, np.uint8), -1)
-        resized_img = cv2.resize(decoded_img, dsize=(150, 150))
+        resized_img = cv2.resize(decoded_img, dsize=(32, 32))
         if len(decoded_img.shape)==2:
             decoded_img = np.dstack([decoded_img, decoded_img, decoded_img])
         processed_img = np.expand_dims(resized_img, axis=0)
@@ -98,7 +98,6 @@ async def create_upload_files_ui(
         color="green"
     content=f"""
             <body>
-                <a href="/">home page</a>
                 <h3> results: </h3>
                 <p  style="color:{color}"> {result} </p>
                 <form action="/upload-file_ui" enctype="multipart/form-data" method="post">
@@ -117,7 +116,6 @@ async def upload_file_ui():
 
     content = """
 <body>
-<a href="/">home page</a>
 <form action="/upload-file_ui" enctype="multipart/form-data" method="post">
 <input name="files" type="file" >
 <input type="submit">
