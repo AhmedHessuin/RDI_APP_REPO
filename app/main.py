@@ -20,20 +20,21 @@ def get_file_save_it_and_inf(uploaded_file):
     #os.makedirs(base_file, exist_ok=True)
     #file_location = f"{base_file}/{uploaded_file.filename}"
 
-    file_as_byte = uploaded_file.file.read()
+    with uploaded_file.file.read() as file_as_byte:
     #with open(file_location, "wb+") as file_object:
     #    file_object.write(file_as_byte)
 
-    decoded_img = cv2.imdecode(np.frombuffer(file_as_byte, np.uint8), -1)
-    if len(decoded_img.shape)==2:
-        decoded_img = np.dstack([decoded_img, decoded_img, decoded_img])
+        decoded_img = cv2.imdecode(np.frombuffer(file_as_byte, np.uint8), -1)
+        resized_img = cv2.resize(decoded_img, dsize=(150, 150))
 
-    resized_img = cv2.resize(decoded_img, dsize=(150, 150))
+        if len(decoded_img.shape)==2:
+            decoded_img = np.dstack([decoded_img, decoded_img, decoded_img])
 
-    processed_img = np.expand_dims(resized_img, axis=0)
-    global saved_modl
-    pred = saved_modl.predict(processed_img)
-    result = np.argmax(pred[0])
+
+        processed_img = np.expand_dims(resized_img, axis=0)
+        global saved_modl
+        pred = saved_modl.predict(processed_img)
+        result = np.argmax(pred[0])
 
     result = mapper[result]
     return result
@@ -42,7 +43,7 @@ def get_file_save_it_and_inf(uploaded_file):
 def load_clf():
     model_path = "/app/model"
     global saved_modl
-    saved_modl = load_model(model_path)
+    saved_modl = load_model(model_path,compile=False)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
@@ -81,7 +82,7 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
 
 
 
-
+'''
 @app.get("/", response_class=HTMLResponse)
 async def main():
     
@@ -97,11 +98,11 @@ async def main():
         </body>
     </html>
     """
+'''
 
 
 
-
-@app.post("/upload-file_ui")
+@app.post("/") #/upload-file_ui
 async def create_upload_files_ui(
     files: UploadFile = File(description="Multiple files as UploadFile"),
 ):
@@ -128,7 +129,7 @@ async def create_upload_files_ui(
     return HTMLResponse(content=content)
 
 
-@app.get("/upload-file_ui")
+@app.get("/") #upload-file_ui
 async def upload_file_ui():
     
 
