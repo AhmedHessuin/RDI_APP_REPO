@@ -9,11 +9,13 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ""
 
 app = FastAPI(title="Covid Health Detection")
 
-model_path = "/app/model"
-global saved_modl
-saved_modl = load_model(model_path)
-global mapper
-mapper = {0: "COVID", 1: "Normal"}
+
+def load_model():
+	model_path = "/app/model"
+	global saved_modl
+	saved_modl = load_model(model_path)
+	global mapper
+	mapper = {0: "COVID", 1: "Normal"}
 
 '''
 def get_file_save_it_and_inf(uploaded_file):
