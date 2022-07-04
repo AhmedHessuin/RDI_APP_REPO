@@ -67,6 +67,7 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
 
 '''
 
+'''
 @app.get("/", response_class=HTMLResponse)
 async def main():
     
@@ -82,6 +83,8 @@ async def main():
         </body>
     </html>
     """
+'''
+
 
 '''
 @app.post("/") #/upload-file_ui
