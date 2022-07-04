@@ -1,4 +1,4 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+FROM frolvlad/alpine-miniconda3:python3.7
 
 COPY requirements.txt .
 

@@ -1,41 +1,23 @@
 import numpy as np
 import cv2
-#import os
 from fastapi.responses import HTMLResponse
-
-from fastapi.templating import Jinja2Templates
-from typing import List
-#os.environ['CUDA_VISIBLE_DEVICES'] = ""
 from tensorflow.keras.models import load_model
-
 from fastapi import FastAPI, File, UploadFile,Request, Form
 
-# data_base_path = "./uploaded_data"
-# os.makedirs(data_base_path, exist_ok=True)
 app = FastAPI(title="Covid Health Detection")
 
 
 def get_file_save_it_and_inf(uploaded_file):
-    #base_file = "/files/files"
-    #os.makedirs(base_file, exist_ok=True)
-    #file_location = f"{base_file}/{uploaded_file.filename}"
 
     with uploaded_file.file.read() as file_as_byte:
-    #with open(file_location, "wb+") as file_object:
-    #    file_object.write(file_as_byte)
-
         decoded_img = cv2.imdecode(np.frombuffer(file_as_byte, np.uint8), -1)
         resized_img = cv2.resize(decoded_img, dsize=(150, 150))
-
         if len(decoded_img.shape)==2:
             decoded_img = np.dstack([decoded_img, decoded_img, decoded_img])
-
-
         processed_img = np.expand_dims(resized_img, axis=0)
         global saved_modl
         pred = saved_modl.predict(processed_img)
         result = np.argmax(pred[0])
-
     result = mapper[result]
     return result
 
