@@ -16,6 +16,7 @@ def load_clf():
     saved_modl = tf.keras.models.load_model(model_path)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
+    
 '''
 def get_file_save_it_and_inf(uploaded_file):
 
@@ -59,7 +60,7 @@ async def alive_ui():
 
 
 @app.post("/upload-file_api")
-async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
+def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
 #    base_file = "/files/files"
     #os.makedirs(base_file, exist_ok=True)
@@ -97,7 +98,7 @@ async def create_upload_files_ui(
     return HTMLResponse(content=content)
 
 
-'''
+
 @app.get("/") #upload-file_ui
 async def upload_file_ui():
     
@@ -111,4 +112,4 @@ async def upload_file_ui():
 </body>
     """
     return HTMLResponse(content=content) 
-
+'''
