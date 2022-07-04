@@ -1,7 +1,10 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"]=''
 import numpy as np
 import cv2
 from fastapi.responses import HTMLResponse
 import tensorflow as tf
+os.environ["CUDA_VISIBLE_DEVICES"]=''
 from fastapi import FastAPI, File, UploadFile,Request, Form
 
 app = FastAPI(title="Covid Health Detection")
@@ -17,7 +20,7 @@ def load_clf():
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
-'''
+
 def get_file_save_it_and_inf(uploaded_file):
 
     with uploaded_file.file.read() as file_as_byte:
@@ -112,4 +115,4 @@ async def upload_file_ui():
 </body>
     """
     return HTMLResponse(content=content) 
-'''
+
