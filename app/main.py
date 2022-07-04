@@ -1,12 +1,22 @@
 import numpy as np
 import cv2
 from fastapi.responses import HTMLResponse
-from tensorflow.keras.models import load_model
+import tensorflow as tf
 from fastapi import FastAPI, File, UploadFile,Request, Form
 
 app = FastAPI(title="Covid Health Detection")
 
 
+
+
+@app.on_event("startup")
+def load_clf():
+    model_path = "/app/model"
+    global saved_modl
+    saved_modl = tf.keras.models.load_model(model_path)
+    global mapper
+    mapper = {0: "COVID", 1: "Normal"}
+'''
 def get_file_save_it_and_inf(uploaded_file):
 
     with uploaded_file.file.read() as file_as_byte:
@@ -22,13 +32,7 @@ def get_file_save_it_and_inf(uploaded_file):
     return result
 
 
-@app.on_event("startup")
-def load_clf():
-    model_path = "/app/model"
-    global saved_modl
-    saved_modl = load_model(model_path,compile=False)
-    global mapper
-    mapper = {0: "COVID", 1: "Normal"}
+
     
 
 @app.post("/alive")
@@ -54,7 +58,7 @@ async def alive_ui():
 
 
 
-@app.post("/upload-file_api/")
+@app.post("/upload-file_api")
 async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
 #    base_file = "/files/files"
@@ -64,24 +68,6 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     return {"Prediction Resut": result}
 
 
-
-'''
-@app.get("/", response_class=HTMLResponse)
-async def main():
-    
-    return """
-    <html>
-        <head>
-            <title>home page</title>
-        </head>
-        <body>
-            <h1>welcome to the main page</h1>
-            <p> we are poor so we don't have css :p </p>
-            <a href="/upload-file_ui">upload file api</a>
-        </body>
-    </html>
-    """
-'''
 
 
 
@@ -111,6 +97,7 @@ async def create_upload_files_ui(
     return HTMLResponse(content=content)
 
 
+'''
 @app.get("/") #upload-file_ui
 async def upload_file_ui():
     
@@ -124,3 +111,4 @@ async def upload_file_ui():
 </body>
     """
     return HTMLResponse(content=content) 
+
