@@ -11,16 +11,16 @@ app = FastAPI(title="Covid Health Detection")
 
 
 
-'''
+
 @app.on_event("startup")
 def load_clf():
     model_path = "/app/model"
     global saved_modl
-    saved_modl = tf.keras.models.load_model(model_path)
+    saved_modl = tf.saved_model.load(model_path)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
-'''
+
 
 def get_file_save_it_and_inf(uploaded_file):
 
@@ -105,11 +105,7 @@ async def create_upload_files_ui(
 
 @app.get("/") #upload-file_ui
 async def upload_file_ui():
-    model_path = "/app/model"
-    global saved_modl
-    saved_modl = tf.keras.models.load_model(model_path)
-    global mapper
-    mapper = {0: "COVID", 1: "Normal"}
+
 
     content = """
 <body>
