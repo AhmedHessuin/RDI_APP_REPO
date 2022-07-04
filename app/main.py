@@ -16,7 +16,7 @@ app = FastAPI(title="Covid Health Detection")
 def load_clf():
     model_path = "/app/model"
     global saved_modl
-    saved_modl = tf.saved_model.load(model_path)
+    saved_modl = tf.keras.models.load_model(model_path)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
