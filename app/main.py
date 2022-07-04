@@ -1,12 +1,12 @@
 import numpy as np
 import cv2
-import os
+#import os
 from fastapi.responses import HTMLResponse
 
 from fastapi.templating import Jinja2Templates
 from typing import List
-os.environ['CUDA_VISIBLE_DEVICES'] = ""
-import tensorflow as tf
+#os.environ['CUDA_VISIBLE_DEVICES'] = ""
+from tensorflow.keras.models import load_model
 
 from fastapi import FastAPI, File, UploadFile,Request, Form
 
@@ -16,9 +16,9 @@ app = FastAPI(title="Covid Health Detection")
 
 
 def get_file_save_it_and_inf(uploaded_file):
-    base_file = "/files/files"
+    #base_file = "/files/files"
     #os.makedirs(base_file, exist_ok=True)
-    file_location = f"{base_file}/{uploaded_file.filename}"
+    #file_location = f"{base_file}/{uploaded_file.filename}"
 
     file_as_byte = uploaded_file.file.read()
     #with open(file_location, "wb+") as file_object:
@@ -42,18 +42,19 @@ def get_file_save_it_and_inf(uploaded_file):
 def load_clf():
     model_path = "/app/model"
     global saved_modl
-    saved_modl = tf.keras.models.load_model(model_path)
+    saved_modl = load_model(model_path)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
 
 
-@app.post("/alive")
-def alive():
+#@app.post("/alive")
+#def alive():
     
-    return {"status":"alive"}
+ #   return {"status":"alive"}
 
-@app.get("/alive")
+#@app.get("/alive")
+'''
 async def alive_ui():
     
 
@@ -68,27 +69,15 @@ async def alive_ui():
 
 '''#
 
+
 @app.post("/upload-file_api/")
 async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
-    base_file = "/files/files"
+#    base_file = "/files/files"
     #os.makedirs(base_file, exist_ok=True)
     result=get_file_save_it_and_inf(uploaded_file)
     
     return {"Prediction Resut": result}
-
-
-
-
-
-
-
-
-'''
-
-
-
-
 
 
 
@@ -108,7 +97,7 @@ async def main():
         </body>
     </html>
     """
-'''#
+
 
 
 
@@ -152,4 +141,4 @@ async def upload_file_ui():
 </form>
 </body>
     """
-    return HTMLResponse(content=content) #'''
+    return HTMLResponse(content=content) 
