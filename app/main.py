@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 import os
 from fastapi.responses import HTMLResponse
-from app.logger import logger
 
 from fastapi.templating import Jinja2Templates
 from typing import List
