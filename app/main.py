@@ -109,7 +109,7 @@ async def upload_file_ui():
 
     content = """
 <body>
-<form action="/upload-file_ui" enctype="multipart/form-data" method="post">
+<form action="/" enctype="multipart/form-data" method="post">
 <input name="files" type="file" >
 <input type="submit">
 </form>
