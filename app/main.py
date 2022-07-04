@@ -111,7 +111,7 @@ async def create_upload_files_ui(
     
 
     if result=="COVID":
-        color="red"
+        color="red " 
     else:
         color="green"
     content=f"""
