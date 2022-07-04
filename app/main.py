@@ -7,6 +7,7 @@ from fastapi import FastAPI, File, UploadFile,Request, Form
 app = FastAPI(title="Covid Health Detection")
 
 
+'''
 def get_file_save_it_and_inf(uploaded_file):
 
     with uploaded_file.file.read() as file_as_byte:
@@ -29,7 +30,7 @@ def load_clf():
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
-
+'''
 
 #@app.post("/alive")
 #def alive():
@@ -53,6 +54,8 @@ async def alive_ui():
 '''#
 
 
+
+'''
 @app.post("/upload-file_api/")
 async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     
@@ -65,6 +68,7 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
 
 
 '''
+
 @app.get("/", response_class=HTMLResponse)
 async def main():
     
@@ -80,10 +84,8 @@ async def main():
         </body>
     </html>
     """
+
 '''
-
-
-
 @app.post("/") #/upload-file_ui
 async def create_upload_files_ui(
     files: UploadFile = File(description="Multiple files as UploadFile"),
@@ -108,7 +110,7 @@ async def create_upload_files_ui(
     """
 
     return HTMLResponse(content=content)
-
+'''
 
 @app.get("/") #upload-file_ui
 async def upload_file_ui():
