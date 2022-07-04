@@ -2,11 +2,12 @@ import numpy as np
 import cv2
 import os
 from fastapi.responses import HTMLResponse
-from tf.keras.models import load_model 
+from app.logger import logger
+
+from fastapi.templating import Jinja2Templates
 from typing import List
-
-
-
+os.environ['CUDA_VISIBLE_DEVICES'] = ""
+import tensorflow as tf
 
 from fastapi import FastAPI, File, UploadFile,Request, Form
 
@@ -42,7 +43,7 @@ def get_file_save_it_and_inf(uploaded_file):
 def load_clf():
     model_path = "/app/model"
     global saved_modl
-    saved_modl = load_model(model_path)
+    saved_modl = tf.keras.models.load_model(model_path)
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     
