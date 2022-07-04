@@ -32,13 +32,12 @@ def load_clf():
     
 '''
 
-#@app.post("/alive")
-#def alive():
+@app.post("/alive")
+def alive():
     
- #   return {"status":"alive"}
+    return {"status":"alive"}
 
-#@app.get("/alive")
-'''
+@app.get("/alive")
 async def alive_ui():
     
 
@@ -51,7 +50,7 @@ async def alive_ui():
     """
     return HTMLResponse(content=content)
 
-'''#
+
 
 
 
