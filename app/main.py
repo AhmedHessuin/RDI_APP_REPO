@@ -1,23 +1,12 @@
-import os 
-os.environ['CUDA_VISIBLE_DEVICES'] = ""
 import numpy as np
 import cv2
 from fastapi.responses import HTMLResponse
 from tensorflow.keras.models import load_model
 from fastapi import FastAPI, File, UploadFile,Request, Form
-os.environ['CUDA_VISIBLE_DEVICES'] = ""
 
 app = FastAPI(title="Covid Health Detection")
 
 
-def load_model():
-	model_path = "/app/model"
-	global saved_modl
-	saved_modl = load_model(model_path)
-	global mapper
-	mapper = {0: "COVID", 1: "Normal"}
-
-'''
 def get_file_save_it_and_inf(uploaded_file):
 
     with uploaded_file.file.read() as file_as_byte:
@@ -33,7 +22,13 @@ def get_file_save_it_and_inf(uploaded_file):
     return result
 
 
-
+@app.on_event("startup")
+def load_clf():
+    model_path = "/app/model"
+    global saved_modl
+    saved_modl = load_model(model_path,compile=False)
+    global mapper
+    mapper = {0: "COVID", 1: "Normal"}
     
 
 @app.post("/alive")
@@ -67,8 +62,6 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     result=get_file_save_it_and_inf(uploaded_file)
     
     return {"Prediction Resut": result}
-
-
 
 
 
@@ -117,7 +110,7 @@ async def create_upload_files_ui(
 
     return HTMLResponse(content=content)
 
-'''
+
 @app.get("/") #upload-file_ui
 async def upload_file_ui():
     
