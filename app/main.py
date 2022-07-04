@@ -5,6 +5,7 @@ import cv2
 from fastapi.responses import HTMLResponse
 from tensorflow.keras.models import load_model
 from fastapi import FastAPI, File, UploadFile,Request, Form
+os.environ['CUDA_VISIBLE_DEVICES'] = ""
 
 app = FastAPI(title="Covid Health Detection")
 
