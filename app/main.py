@@ -6,6 +6,11 @@ from fastapi import FastAPI, File, UploadFile,Request, Form
 
 app = FastAPI(title="Covid Health Detection")
 
+model_path = "/app/model"
+global saved_modl
+saved_modl = load_model(model_path,compile=False)
+global mapper
+mapper = {0: "COVID", 1: "Normal"}
 
 def get_file_save_it_and_inf(uploaded_file):
 
@@ -22,13 +27,7 @@ def get_file_save_it_and_inf(uploaded_file):
     return result
 
 
-@app.on_event("startup")
-def load_clf():
-    model_path = "/app/model"
-    global saved_modl
-    saved_modl = load_model(model_path,compile=False)
-    global mapper
-    mapper = {0: "COVID", 1: "Normal"}
+
     
 
 @app.post("/alive")
