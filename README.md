@@ -1,4 +1,4 @@
-# Hussien ui/api server
+# Hussien UI/API server
 # **Description**
 
 This is a tutorial on how to design a simple server using flask,gevent and docker and how to handle its simple error cases.
