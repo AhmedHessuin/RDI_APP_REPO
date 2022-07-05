@@ -67,7 +67,7 @@ def test_pred():
         result = np.argmax(pred[0])
         return {"test":"image pass"}
     except:
-        return {"test","image faild"
+        return {"test","image faild"}
 
     
     
