@@ -42,4 +42,5 @@ jobs:
             ls &&
             echo "========" &&
             cd /media &&
-            ls
+            ls &&
+            echo "________"
