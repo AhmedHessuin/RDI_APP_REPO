@@ -59,7 +59,7 @@ jobs:
             #Now we have got the access of EC2 and we will start the deploy .
             pwd &&
             cd /tmp/repo &&
-            ls &&
+            sudo su &&
             docker-compose down &&
             docker-compose up
           '
