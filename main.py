@@ -52,7 +52,25 @@ def load_clf():
     mapper = {0: "COVID", 1: "Normal"}
     #logger.info("server is up Now head over to http://localhost:80/docs")
 
+@app.post("/test_api_pred")
+def test_pred():
+    decoded_img=cv2.imread('./COVID-19 (522).jpg')
+    if len(decoded_img.shape)==2:
+        decoded_img = np.dstack([decoded_img, decoded_img, decoded_img])
 
+    resized_img = cv2.resize(decoded_img, dsize=(150, 150))
+
+    processed_img = np.expand_dims(resized_img, axis=0)
+    try:
+        global saved_modl
+        pred = saved_modl.predict(processed_img)
+        result = np.argmax(pred[0])
+    return {"test":"image pass"}
+    except:
+        return {"test","image faild"
+
+    
+    
 @app.post("/alive")
 def alive():
     #logger.info("server is alive request api")
