@@ -149,3 +149,5 @@ check ci_cd.png image
 in this step we install the requirments in the repo then make tests wiht pytest for the apis post functions like checking server is alive, and prediction on dumy image on the image to check the model load and predictions 
 ### CD 
 in this step we deploy to the aws server and setup our docker using docker-compuse then run the docker instance
+### Script 
+[action_script](https://github.com/AhmedHessuin/RDI_APP_REPO/blob/master/.github/workflows/github-actions-ec2.yml)
