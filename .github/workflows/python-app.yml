@@ -15,12 +15,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        # Use bash as the shell
-        shell: bash
-        # Specify the working directory for the workflow
-        working-directory: ./app
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.7
@@ -38,7 +32,9 @@ jobs:
         pwd &&
         ls
     - name: check test
+      working-directory: ./app
       run: | 
+        ls &&
         pytest
 
 
