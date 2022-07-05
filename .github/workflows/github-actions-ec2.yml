@@ -60,6 +60,7 @@ jobs:
             pwd &&
             cd /tmp/repo &&
             docker_len=$(docker-compose ps | wc -l) &&
+            echo $docker_len &&
             if [ $docker_len -ge 3 ] ; then sudo docker-compose down; else echo "server is already down";fi &&
             sudo docker-compose up -d
           '
