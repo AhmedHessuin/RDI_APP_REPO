@@ -142,6 +142,7 @@ http://18.144.5.195/
 # **CI/CD**
 * this is made by github actions 
 ## Stages 
+check ci_cd.png image
 ### CI 
 in this step we install the requirments in the repo then make tests wiht pytest for the apis post functions like checking server is alive, and prediction on dumy image on the image to check the model load and predictions 
 ### CD 
