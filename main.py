@@ -31,10 +31,12 @@ def get_file_save_it_and_inf(uploaded_file):
     resized_img = cv2.resize(decoded_img, dsize=(150, 150))
 
     processed_img = np.expand_dims(resized_img, axis=0)
-    global saved_modl
-    pred = saved_modl.predict(processed_img)
-    result = np.argmax(pred[0])
-
+    try:
+        global saved_modl
+        pred = saved_modl.predict(processed_img)
+        result = np.argmax(pred[0])
+    except:
+        return {"error" : "input image not 3 c"}
     result = mapper[result]
     return result
 
