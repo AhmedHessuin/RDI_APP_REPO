@@ -40,5 +40,5 @@ jobs:
             #Now we have got the access of EC2 and we will start the deploy .
             cd / &&
             ls &&
-            df -h &&
-            touch this_is_from_action.txt
+            cd media &&
+            ls
