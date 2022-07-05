@@ -17,7 +17,7 @@ def test_predict():
     file_name = './COVID-19 (522).jpg'
     
     response = client.post(
-        "/upload-file_api",files={"uploaded_file":("uploaded_file",open(file_name,"rb"),"image/jpeg")}
+        "/upload-file_api",files={"uploaded_file":("file",open(file_name,"rb"),"image/jpeg")}
         )
     assert response.status_code == 200
     
