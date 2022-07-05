@@ -14,11 +14,8 @@ def test_alive():
     assert response.status_code == 200
 
 def test_predict():
-    file_name = './COVID-19 (522).jpg'
-    
     response = client.post(
-        "/upload-file_api",file={"uploaded_file":("file",open(file_name,"rb"),"image/jpeg")}
-        )
+        "/test_api_pred" )
     assert response.status_code == 200
     
 load_clf()  
