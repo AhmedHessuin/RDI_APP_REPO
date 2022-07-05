@@ -40,5 +40,7 @@ jobs:
             #Now we have got the access of EC2 and we will start the deploy .
             pwd &&
             cd / &&
-            pwd
+            pwd &&
+            cd /media &&
+            ls
           '
