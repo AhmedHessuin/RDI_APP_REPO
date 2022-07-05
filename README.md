@@ -83,7 +83,7 @@ image file to predict format jpg
   'http://18.144.5.195/upload-file_api/' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'uploaded_file=@COVID-19 (522).jpg;type=image/jpeg'
+  -F 'uploaded_file=@imagename.jpg;type=image/jpeg'
 ```
 
 **string:** This should be either an arabic text, an english text or english numbers.
@@ -132,6 +132,8 @@ Representation
 "Description":"An internal server error has occured"
 ```
 
+# UI 
+http://18.144.5.195/
 
 
 
