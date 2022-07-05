@@ -13,7 +13,7 @@ def test_alive():
     response = client.post("/alive")
     assert response.status_code == 200
 
-def test_predict_route():
+def test_predict():
     file_name = './image.jpg'
     
     response = client.post(
@@ -22,5 +22,6 @@ def test_predict_route():
     assert response.status_code == 200
     
 load_clf()  
+test_alive()
 test_home_route()
-test_predict_route()
+test_predict()
