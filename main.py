@@ -76,7 +76,9 @@ async def create_upload_file_api(uploaded_file: UploadFile = File(...)):
     #logger.info("upload api is used")
     #base_file = "/files/files"
   #  os.makedirs(base_file, exist_ok=True)
+    print("inside")
     result=get_file_save_it_and_inf(uploaded_file)
+    print(result)
     #logger.info(f"result of the image is {result} , file name {uploaded_file.filename}")
     return {"Prediction Resut": result}
 
