@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: CI
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -25,7 +26,8 @@ jobs:
         pytest
         
   deploy:
-    name: Deploy to EC2 on master branch push
+    needs: build
+    name: CD
     runs-on: ubuntu-latest
 
     steps:
@@ -56,8 +58,8 @@ jobs:
           
             #Now we have got the access of EC2 and we will start the deploy .
             pwd &&
-            cd / &&
-            pwd &&
-            cd /media &&
-            ls
+            cd /temp/repo &&
+            ls &&
+            docker-compose down &&
+            docker-compose up &&
           '
