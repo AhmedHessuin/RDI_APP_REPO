@@ -110,7 +110,6 @@ async def main():
         </head>
         <body>
             <h1>welcome to the main page</h1>
-            <p> we are poor so we don't have css :p </p>
             <a href="/upload-file_ui">upload file api</a>
         </body>
     </html>
