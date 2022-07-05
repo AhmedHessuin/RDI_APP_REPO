@@ -65,7 +65,7 @@ def test_pred():
         global saved_modl
         pred = saved_modl.predict(processed_img)
         result = np.argmax(pred[0])
-    return {"test":"image pass"}
+        return {"test":"image pass"}
     except:
         return {"test","image faild"
 
