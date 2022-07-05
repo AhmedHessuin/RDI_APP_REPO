@@ -55,7 +55,8 @@ Representation
 }
 ```
 **API test command**
-```curl -X 'POST' \
+```
+curl -X 'POST' \
   'http://18.144.5.195/alive' \
   -H 'accept: application/json' \
   -d ''
@@ -79,7 +80,8 @@ image file to predict format jpg
 ```
 
 **API test command**
-```curl -X 'POST' \
+```
+curl -X 'POST' \
   'http://18.144.5.195/upload-file_api/' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
