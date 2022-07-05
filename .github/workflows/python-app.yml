@@ -32,7 +32,6 @@ jobs:
         pwd &&
         ls
     - name: check test
-      working-directory: ./app
       run: | 
         pwd &&
         ls &&
