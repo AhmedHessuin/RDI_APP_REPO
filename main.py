@@ -44,7 +44,10 @@ def get_file_save_it_and_inf(uploaded_file):
 def load_clf():
     model_path = "/app/model"
     global saved_modl
-    saved_modl = tf.keras.models.load_model(model_path)
+    try:
+        saved_modl = tf.keras.models.load_model(model_path)
+    except:
+        saved_modl =tf.keras.models.load_model("./model")
     global mapper
     mapper = {0: "COVID", 1: "Normal"}
     #logger.info("server is up Now head over to http://localhost:80/docs")
