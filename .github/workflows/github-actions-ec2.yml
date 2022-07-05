@@ -59,7 +59,7 @@ jobs:
             #Now we have got the access of EC2 and we will start the deploy .
             pwd &&
             cd /tmp/repo &&
-            docker_len=$(docker-compose ps | wc -l) &&
+            docker_len=$(sudo docker-compose ps | wc -l) &&
             echo $docker_len &&
             if [ $docker_len -ge 3 ] ; then sudo docker-compose down; else echo "server is already down";fi &&
             sudo docker-compose up -d
